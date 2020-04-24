@@ -1,0 +1,26 @@
+syntax = "proto2"; //表明使用protobuf的编译器版本为v2，目前最新的版本为v3
+
+package tutorial;//声明了一个包名，用来防止不同的消息类型命名冲突，类似于 namespace
+
+message Info
+{
+//name 是字段名，1 是字段的标识号，在消息定义中，每个字段都有唯一的一个数字标识号，
+//这些标识号是用来在消息的二进制格式中识别各个字段的，一旦开始使用就不能够再改变。
+//标识号的范围在：1 ~ 229 - 1，其中[19000－19999]为Protobuf预留，不能使用。
+optional string name = 1;
+
+optional int32 age = 2;
+}
+message VehicleSignal {
+enum TurnSignal {
+TURN_NONE = 0;
+TURN_LEFT = 1;
+TURN_RIGHT = 2;
+};
+optional TurnSignal turn_signal = 1;
+// lights enable command
+optional bool high_beam = 2;
+optional bool low_beam = 3;
+optional bool horn = 4;
+optional bool emergency_light = 5;
+}
